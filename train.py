@@ -6,9 +6,13 @@ from model.hybrid_sn import HybridSN
 from dataset.hsi_dataset import HSIDataset
 from utils.data_utils import load_data, apply_pca, create_image_cubes
 from config.config import Config
+from utils.log_utils import record_terminal, record_timestamp
 
 
 def main():
+    # Redirect console's output to log file
+    record_terminal('./log/output_{}.log'.format(record_timestamp().date()))
+
     cfg = Config()
 
     # Load and preprocess data
@@ -64,5 +68,6 @@ def main():
     print(report)
 
 
+# MUST be called in Windows
 if __name__ == '__main__':
     main()
